@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>簡易行先表示版だよ=^_^=</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <div class=todoAppWrapper >
+
+        <div id="app" style="padding: 25px 50px 25px 50px;">
+            <h2 class="center" v-bind >{{ title }}</h2>
+            <p class="right" v-model="data.division">{{ division }}</p>
+            <hr style="margin:40px 0px 40px 0px;">
+
+            <div class="datas">
+                <p>名前</p>
+                <p>行先</p>
+                <p>直帰</p>
+                <p>削除</p>
+            </div>
+            <div v-for="(data, index) in datas" class="datas">
+                <span v-bind:class="{ absence: data.dist=='帰宅' }">
+                    {{ data.name }} 
+                </span>
+                <select v-model="data.dist">
+                    <option v-for="dist in dists">{{ dist }}</option>
+                </select>
+                <input type="checkbox" v-model="data.noReturn">
+                <button v-on:click="delMember(index)">del</button>
+            </div>
+            <hr style="margin:60px 0px 60px 0px;">
+            
+
+            <button @click="toggle" class="center">追加設定</button>
+                  
+            <div v-show="isVisible">
+                <div class="datas">
+                    <input type="text" v-model="newDist" placeholder="新しい行先">
+                    <button v-on:click="addDist(newDist)">行先追加</button>
+                </div>
+                <div class="datas">
+                    <input type="text" v-model="newMember" placeholder="氏名">
+                    <button v-on:click="addMember(newMember)">メンバー追加</button>
+                </div>
+                <div class="datas">
+                    <input type="text" v-model="division" placeholder="部署名">
+                    <button v-on:click="setDivision(division)">部署名変更</button>
+                </div>
+                <hr style="margin: 30px 0px 30px 0px;">
+                <div calss="datas">
+                    <p class="center">行先の削除</p>
+                </div>
+                <div v-for="(dist, distIndex) in dists" class="datas">
+                    {{ dist }} 
+                    <button v-on:click="delDist(distIndex)">del</button>
+                </div>
+                <!-- <pre>{{ $data }}</pre> -->
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./script/main.js"></script>
+</body>
+</html>

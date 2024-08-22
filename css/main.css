@@ -1,0 +1,41 @@
+body {
+    background-color: rgb(34, 64, 233);
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    padding: 55px;
+}
+
+.todoAppWrapper {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: rgb(236, 236, 236);
+    box-shadow: 5px 5px 15px 3px #777777;
+    border-radius: 10px;;
+}
+
+.datas {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0px 10px 0px;
+}
+
+.h2 {
+    margin: 30px;
+}
+
+
+.absence {
+    text-decoration: line-through;
+    color: rgb(179, 177, 177);
+}
+
+.hr_style {
+    margin:20px 0px 20px 0px;
+    color: blue;
+}
+
+.center {
+    text-align: center;
+}
+.right {
+    text-align: right;
+}
