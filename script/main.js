@@ -53,7 +53,7 @@ const app = Vue.createApp({
                 let newmember = {
                     name: member,
                     dist: '',
-                    office: false,
+                    noReturn: false,
                 }
                 this.datas.push(newmember)
                 this.newMember = ''
