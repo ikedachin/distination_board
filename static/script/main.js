@@ -71,10 +71,12 @@ const app = Vue.createApp({
             if (index != 0 ) {
                 this.dists.splice(index, 1)
             }
-
+        },
+        setDivision: function (div) {
+            this.division = div
+            
         }
     }
     })
-
 
 app.mount('#app')

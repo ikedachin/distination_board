@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(34, 64, 233);
+    background-color: rgb(106, 112, 147);
     font-family: "M PLUS Rounded 1c", sans-serif;
     padding: 55px;
 }
@@ -22,6 +22,10 @@ body {
     margin: 30px;
 }
 
+.bold {
+    font-weight: bold;
+    color: #483535;
+}
 
 .absence {
     text-decoration: line-through;
@@ -38,4 +42,9 @@ body {
 }
 .right {
     text-align: right;
+}
+
+
+[v-cloak] {
+    display: none;
 }
