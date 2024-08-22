@@ -14,7 +14,7 @@ npm i nodemon express
 
 
 
-ソース出現防止のために
+リロード時のソース出現防止のために
 id="app"と同じタグに`v-cloak`を設定
 ```html
 <div v-cloak id="app" style="padding: 25px 50px 25px 50px;">
