@@ -5,17 +5,23 @@ body {
 }
 
 .todoAppWrapper {
-    max-width: 400px;
+    max-width: 500px;
     margin: 0 auto;
     background-color: rgb(236, 236, 236);
     box-shadow: 5px 5px 15px 3px #777777;
     border-radius: 10px;;
+    font-size: large;
 }
 
 .datas {
     display: flex;
     justify-content: space-between;
-    margin: 10px 0px 10px 0px;
+    /* margin: 10px 0px 10px 0px; */
+    padding: 10px;
+}
+
+.buttons {
+    margin: 0px 0px 0px 5px;
 }
 
 .h2 {
@@ -32,10 +38,6 @@ body {
     color: rgb(179, 177, 177);
 }
 
-.hr_style {
-    margin:20px 0px 20px 0px;
-    color: blue;
-}
 
 .center {
     text-align: center;

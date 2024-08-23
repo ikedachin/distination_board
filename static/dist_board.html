@@ -17,51 +17,92 @@
             <div class="datas">
                 <p>名前</p>
                 <p>行先</p>
-                <p>直帰</p>
-                <p>削除</p>
+                <p>直行 / 直帰</p>
+                <!-- <p>削除</p> -->
             </div>
+
             <div v-for="(data, index) in datas" class="datas">
                 <span v-bind:class="{ absence: data.dist=='帰宅' }">
                     {{ data.name }} 
                 </span>
                 <select v-model="data.dist">
+                <!-- <select v-model="data.dist" style="width: 100px;"> -->
                     <option v-for="dist in dists">{{ dist }}</option>
                 </select>
-                <input type="checkbox" v-model="data.noReturn">
-                <button v-on:click="delMember(index)">del</button>
+                <div v-show="data.ddnrButton">
+                    <button class="buttons" v-on:click="directDep(index)">直行</button>
+                    <button class="buttons" v-on:click="noRet(index)">直帰</button>
+                    <button class="buttons" v-on:click="dDnR(index)">直行直帰</button>
+                </div>
+
+
+                <div v-show="data.directDepart">
+                    直行
+                    <button v-on:click="resetWay(index)">reset</button>
+                </div>
+                
+                <div v-show="data.noReturn">
+                    直帰
+                    <button v-on:click="resetWay(index)">reset</button>
+                </div>
+                <div v-show="data.DDNR">
+                    直行直行
+                    <button v-on:click="resetWay(index)">reset</button>
+                </div>
+                
             </div>
             <hr style="margin:60px 0px 60px 0px;">
-            
+            <pre>{{ $data }}</pre>
+
+
+
+
+
+
+            <!-- ココから追加設定 -->
 
             <button @click="toggle" class="center">追加設定</button>
                   
             <div v-show="isVisible">
-                <hr style="margin: 30px 0px 30px 0px;">
-                <p class="bold">行先の追加</p>
+                <hr style="margin: 30px 0px 30px 0px; border-top: dashed rgb(180, 179, 179);">
+                <p class="bold">行先の追加/削除</p>
+                <p v-bind>{{ message }}</p>
                 <div class="datas">
-                    <input type="text" v-model="newDist" placeholder="新しい行先">
+                    <input type="text" v-model="newDist" placeholder="追加したい行先">
                     <button v-on:click="addDist(newDist)">行先追加</button>
                 </div>
-                <hr style="margin: 30px 0px 30px 0px;">
-                <div calss="datas">
-                    <p class="bold">行先の削除</p>
-                </div>
+                
                 <div v-for="(dist, distIndex) in dists">
                     <p v-if="distIndex != 0" class="datas">
                         {{ dist }} 
                         <button v-on:click="delDist(distIndex)">del</button>
                     </p>
                 </div>
-                <hr style="margin: 30px 0px 30px 0px;">
+                <hr style="margin: 30px 0px 30px 0px; border-top: dashed rgb(180, 179, 179);">
+                <p class="bold">メンバーの追加/削除</p>
+                <p v-bind>{{ message }}</p>
                 <div class="datas">
-                    <input type="text" v-model="newMember" placeholder="氏名">
-                    <button v-on:click="addMember(newMember)">メンバー追加</button>
+                    <input type="text" v-model="newMember" placeholder="追加したい氏名">
+                    <button v-on:click="addMember(newMember)">追加</button>
                 </div>
-                <div class="datas">
+
+                <div v-for="(data, index) in datas" class="datas">
+                    <span v-bind:class="{ absence: data.dist=='帰宅' }">
+                        {{ data.name }} 
+                    </span>
+                    <!-- <select v-model="data.dist">
+                        <option v-for="dist in dists">{{ dist }}</option>
+                    </select> -->
+                    <!-- <input type="checkbox" v-model="data.noReturn"> -->
+                    <button v-on:click="delMember(index)">del</button>
+                </div>
+                <hr style="margin: 30px 0px 30px 0px; border-top: dashed rgb(180, 179, 179);">
+                <p class="bold">部署名変更</p>
+                <div class="datas"> 
                     <input type="text" v-model="division" placeholder="部署名">
                     <button v-on:click="setDivision(division)">部署名変更</button>
                 </div>
-                <hr style="margin: 30px 0px 30px 0px;">
+                <hr style="margin: 30px 0px 30px 0px; border-top: dashed rgb(180, 179, 179);">
                 <!-- <pre>{{ $data }}</pre> -->
             </div>
         </div>
