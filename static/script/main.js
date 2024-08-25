@@ -2,7 +2,7 @@ const app = Vue.createApp({
     data: () => ({
         title: '行先表示',
         division: '好き勝手営業部',
-        noReturnResetTime: '18:1',
+        noReturnResetTime: '21:10',
         dists: [' ', '帰宅', '在宅', '取引先A', '取引先B', '会議室A', '会議室B', '好きなところ'],
         transWays: [' ', '直行', '直帰', '直行直帰'],
         newMember: '',
@@ -44,7 +44,7 @@ const app = Vue.createApp({
     }),
     mounted() {
         this.checkTime();
-        setInterval(this.checkTime, 1000);
+        setInterval(this.checkTime, 1000*60);
     },
     methods: {
         addDist: function (newdist) {

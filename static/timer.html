@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <link rel="stylesheet" href="./css/timer.css">
+</head>
+<body>
+    <div class=todoAppWrapper >
+
+        
+        <div v-cloak id="count_app" style="padding: 50px 50px 50px 50px;">
+            
+            <h2 v-bind>{{ title }}</h2>
+            <div>
+                <div v-show="!setTimeIsVisible">
+                    <input type="text" v-model="setTimeString" placeholder="mm:ss">
+                    <button v-on:click="set">set</button>
+                    <div>{{ alart }}</div>
+                </div>
+
+                <div v-show="setTimeIsVisible">
+                    <div class="setTime">設定時間: {{ setTimeString }}</div>
+                </div>
+                <div v-show="setTimeIsVisible">
+                    <hr>
+                    <div class="setTime">残り時間:</div>
+                    <div class="mainDisplay">{{ countDowntime }}</div>
+                    <hr>
+
+                    <div class="buttons">
+                        <button class="button" v-on:click="countStart">start</button>
+                        <button class="button" v-on:click="stop">stop</button>
+                        <button class="button" v-on:click="reset">reset</button>
+                    </div>
+                </div>
+
+            </div>
+            <!-- <div>setSeconds: {{ setSeconds }}</div> -->
+            <div>
+                
+            </div>
+            
+            <!-- <pre>{{ $data }}</pre> -->
+            
+        </div>
+    </div>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="./script/timer.js"></script>
+    </body>
+</html>
