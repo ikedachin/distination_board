@@ -12,10 +12,10 @@
         
         <div v-cloak id="count_app" style="padding: 50px 50px 50px 50px;">
             
-            <h3 v-bind>{{ title }}</h3>
+            <h4 v-bind>{{ title }}</h4>
             <div>
                 <div v-show="!setTimeIsVisible">
-                    <input type="text" v-model="setTimeString" placeholder="mm:ss">
+                    <input type="text" v-model="setTimeString" placeholder="mm:ss" style="margin-right: 5px;">
                     <!-- 監視プロパティを入れたので廃止 -->
                     <button v-on:click="set">set</button>
                     <div>{{ alart }}</div>
@@ -27,7 +27,7 @@
                 <div v-show="setTimeIsVisible">
                     <hr>
                     <div class="setTime">残り時間:</div>
-                    <div class="mainDisplay">{{ countDowntime }}</div>
+                    <div :class="timerClass">{{ countDowntime }}</div>
                     <hr>
 
                     <div class="buttons">

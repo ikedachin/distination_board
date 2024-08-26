@@ -40,6 +40,20 @@ const app = Vue.createApp({
     //         }
     //     }
     // },
+    computed: {
+        timerClass() { // class変更設定
+          if (this.setSeconds <= 0) {
+            return 'red-background';
+          } else if (this.setSeconds <= 10) {
+            return 'red-background';
+          } else if (this.setSeconds <= 30) {
+            return 'yellow-background';
+          } else {
+            // return '';
+            return 'default-background';
+          }
+        }
+      },
     methods: {
         set: function (event) {
             if (this.setTimeString === '') {
@@ -66,7 +80,7 @@ const app = Vue.createApp({
             if (this.flagInCount  === false) {
                 this.flagInCount = true;
                 this.resetIsVisible = false
-                countdownInterval = setInterval(() => {    
+                countdownInterval = setInterval(() => {   
                     // 時間がゼロになるまでカウントダウン
                     if (this.setSeconds > 0) {
                         this.setSeconds -= 1

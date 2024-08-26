@@ -67,20 +67,23 @@ body {
 
 
 /* 主表示部分 */
-.mainDefault {
-    font-size: 50px;
+.default-background {
+    /* background-color: white; */
+    color: black;
+    text-align: center;
+    margin:10px 0px 10px 0px;
+}
+
+.yellow-background {
+    margin:10px 0px 10px 0px;
+    background-color: yellow;
+    color: black;
     text-align: center;
 }
 
-.warning {
-    font-size: 50px;
-    text-align: center;
-    background-color: yellow;
-    color: black;
-}
-.mainDanger {
-    font-size: 50px;
-    text-align: center;
+.red-background {
+    margin:10px 0px 10px 0px;
     background-color: red;
     color: white;
+    text-align: center;
 }
