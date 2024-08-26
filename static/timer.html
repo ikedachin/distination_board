@@ -17,8 +17,8 @@
                 <div v-show="!setTimeIsVisible">
                     <input type="text" v-model="setTimeString" placeholder="mm:ss">
                     <!-- 監視プロパティを入れたので廃止 -->
-                    <!-- <button v-on:click="set">set</button> -->
-                    <!-- <div>{{ alart }}</div> -->
+                    <button v-on:click="set">set</button>
+                    <div>{{ alart }}</div>
                 </div>
 
                 <div v-show="setTimeIsVisible">
@@ -33,7 +33,7 @@
                     <div class="buttons">
                         <button class="button" v-on:click="countStart">start</button>
                         <button class="button" v-on:click="stop">stop</button>
-                        <button class="button" v-on:click="reset">reset</button>
+                        <button class="button" v-show="resetIsVisible" v-on:click="reset">reset</button>
                     </div>
                 </div>
 
