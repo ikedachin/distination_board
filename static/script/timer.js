@@ -1,38 +1,58 @@
 const app = Vue.createApp({
     data: () => ({
         
-        title: '名古屋LLM MeetUp#2',
+        title: 'Count Down Timer',
         setTimeString: '', // 設定した分、秒（string）
         setSeconds: 0, // setTimeStringを数値の秒に変換
         nowSeconds: 0, // 現在の残り秒数
         countDowntime: '未設定', // 表示内容
-        setTimeIsVisible: false,
-        flagInCount: false,
-        alart: '', // 時間を入力しなかった時にアラートを出すため
+        setTimeIsVisible: false, // 表示切替用フラグ
+        flagInCount: false, // 二重でcountStartを実行した時にキャンセルするためのフラグ
+        // alart: '', // 時間を入力しなかった時にアラートを出すため
         
     }),
     mounted() {
         // this.countStart();
         // setInterval(this.countStart, 1000)
     },
-    
-    methods: {
-        set: function (event) {
-            if (this.setTimeString === '') {
-                this.alart = '"mm:ss"の形式で時間を設定してください'
-            } else {
-                let strMin = this.setTimeString.split(':')[0];
-                let strSec = this.setTimeString.split(':')[1];
+    watch: {
+        setTimeString: function(value) {
+            if (value !== "時間が終了しました！" & value !== '') {
+
+                
+                value = value.replace('：', ':')
+                value = value.replace(/[０-９]/g, function(s) {
+                        return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+                    });
+                let strMin = value.split(':')[0];
+                let strSec = value.split(':')[1];
+                    
                 this.setSeconds = parseInt(strMin, 10) * 60 + parseInt(strSec);
+                
                 let minutes = Math.floor(this.setSeconds / 60);
                 let seconds = this.setSeconds % 60;
-                this.countDowntime = 
-                `${minutes.toString().padStart(2, '0')}分${seconds.toString().padStart(2, '0')}秒`;
-                this.setTimeString = this.countDowntime
-                this.setTimeIsVisible = !this.setTimeIsVisible
-                this.alart = ''
+                this.countDowntime = `${minutes.toString().padStart(2, '0')}分${seconds.toString().padStart(2, '0')}秒`;
+                this.setTimeIsVisible = true;
             }
-        },
+    },
+},
+    methods: {
+        // set: function (event) { // 監視プロパティを入れたので廃止
+        //     if (this.setTimeString === '') {
+        //         this.alart = '"mm:ss"の形式で時間を設定してください'
+        //     } else {
+        //         let strMin = this.setTimeString.split(':')[0];
+        //         let strSec = this.setTimeString.split(':')[1];
+        //         this.setSeconds = parseInt(strMin, 10) * 60 + parseInt(strSec);
+        //         let minutes = Math.floor(this.setSeconds / 60);
+        //         let seconds = this.setSeconds % 60;
+        //         this.countDowntime = 
+        //         `${minutes.toString().padStart(2, '0')}分${seconds.toString().padStart(2, '0')}秒`;
+        //         this.setTimeString = this.countDowntime
+        //         this.setTimeIsVisible = !this.setTimeIsVisible
+        //         this.alart = ''
+        //     }
+        // },
         countStart: function (params) {
             if (this.flagInCount  === false) {
                 this.flagInCount = true;
@@ -43,23 +63,27 @@ const app = Vue.createApp({
                         let minutes = Math.floor(this.setSeconds / 60);
                         let seconds = this.setSeconds % 60;
                         this.countDowntime = 
-                        `${minutes.toString().padStart(2, '0')}分${seconds.toString().padStart(2, '0')}秒`;
-                    } else if (this.setSeconds === 0) {
-                        this.setSeconds--;
-                        this.countDowntime = "時間が終了しました！";
+                            `${minutes.toString().padStart(2, '0')}分${seconds.toString().padStart(2, '0')}秒`;
+
                     } else {
+                        this.countDowntime = "時間が終了しました！";
                         clearInterval(countdownInterval); // インターバルを停止
+                        this.flagInCount = false;
+                        console.log('インターバル停止')
                     }               
                 }, 1000);
             }
         },
         reset: function() {
-            this.setTimeString = ''; // 設定した分、秒（string）
-            this.setSeconds = 0; // setTimeStringを数値の秒に変換
-            this.nowSeconds = 0; // 現在の残り秒数
-            this.countDowntime = '未設定'; 
-            this.setTimeIsVisible = !this.setTimeIsVisible
-            this.flagInCount = false;
+            if (this.flagInCount === false) {
+
+                this.setTimeIsVisible = !this.setTimeIsVisible;
+                this.flagInCount = false;
+                this.setTimeString = ''; // 設定した分、秒（string）
+                this.setSeconds = 0; // setTimeStringを数値の秒に変換
+                this.nowSeconds = 0; // 現在の残り秒数
+                this.countDowntime = '未設定'; 
+            }
         },
         stop: function() {
             try {
@@ -69,22 +93,9 @@ const app = Vue.createApp({
                 console.log(err);
             }
         }
-        }, 
+    }, 
 })
 
 app.mount('#count_app')
 
 
-// let countdownInterval = setInterval(() => {
-//     console.log('updateCountdown');
-    
-//     // 残り時間を表示（2桁の形式で）
-    
-//     // 時間がゼロになるまでカウントダウン
-//     if (this.setSeconds > 0) {
-//         this.setSeconds -= 1;
-//     } else {
-//         clearInterval(countdownInterval); // インターバルを停止
-//         this.countDowntime = "時間が終了しました！";
-//     }               
-// }, 1000);
