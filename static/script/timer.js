@@ -94,6 +94,7 @@ const app = Vue.createApp({
                         clearInterval(countdownInterval); // インターバルを停止
                         this.flagInCount = false;
                         console.log('インターバル停止')
+                        this.resetIsVisible = true;
                     }               
                 }, 1000);
             }
