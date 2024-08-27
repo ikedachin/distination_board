@@ -68,28 +68,27 @@ body {
 
 /* 主表示部分 */
 .default-background {
-    /* background-color: white; */
     color: black;
     text-align: center;
-    margin:10px 0px 10px 0px;
-    padding:0px 10px 0px 10px;
-    font-size: 25x;
+    margin: 10px 0px 10px 0px;
+    padding: 5px 10px 5px 10px;
+    font-size: 25px;
 }
 
 .yellow-background {
-    margin:10px 0px 10px 0px;
     background-color: yellow;
     color: black;
     text-align: center;
-    padding:0px 10px 0px 10px;
+    margin:10px 0px 10px 0px;
+    padding: 5px 10px 5px 10px;
     font-size: 30px;
 }
 
 .red-background {
-    margin:10px 0px 10px 0px;
     background-color: red;
     color: white;
     text-align: center;
-    padding:0px 10px 0px 10px;
-    font-size: 35px;
+    margin: 10px 0px 10px 0px;
+    padding: 5px 10px 5px 10px;
+    font-size: 30px;
 }

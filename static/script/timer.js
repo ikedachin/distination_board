@@ -44,9 +44,9 @@ const app = Vue.createApp({
         timerClass() { // class変更設定
           if (this.setSeconds <= 0) {
             return 'red-background';
-          } else if (this.setSeconds <= 10) {
+          } else if (this.setSeconds <= 60) {
             return 'red-background';
-          } else if (this.setSeconds <= 30) {
+          } else if (this.setSeconds <= 300) {
             return 'yellow-background';
           } else {
             // return '';
