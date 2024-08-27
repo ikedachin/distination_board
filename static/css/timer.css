@@ -72,6 +72,8 @@ body {
     color: black;
     text-align: center;
     margin:10px 0px 10px 0px;
+    padding:0px 10px 0px 10px;
+    font-size: 25x;
 }
 
 .yellow-background {
@@ -79,6 +81,8 @@ body {
     background-color: yellow;
     color: black;
     text-align: center;
+    padding:0px 10px 0px 10px;
+    font-size: 30px;
 }
 
 .red-background {
@@ -86,4 +90,6 @@ body {
     background-color: red;
     color: white;
     text-align: center;
+    padding:0px 10px 0px 10px;
+    font-size: 35px;
 }
